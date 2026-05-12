@@ -1,0 +1,5 @@
+Order ID: 101
+Customer: aryan
+Product: guitar
+Address: katihar
+----------------------

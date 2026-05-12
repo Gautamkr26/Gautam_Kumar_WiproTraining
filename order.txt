@@ -1,0 +1,2 @@
+Order: Burger x2 | Customer: Gautam | Status: Delivered
+Order: Pizza x1 | Customer: Eklove | Status: Pending
