@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-05-23T23:11:01 IST" name="GridSuite" finished-at="2026-05-23T23:11:29 IST" duration-ms="28217">
+    <groups>
+    </groups>
+    <test started-at="2026-05-23T23:11:01 IST" name="ChromeTest" finished-at="2026-05-23T23:11:16 IST" duration-ms="14762">
+      <class name="Day_27.CrossBrowserTest_Grid">
+        <test-method signature="launchBrowser(java.lang.String)[pri:0, instance:Day_27.CrossBrowserTest_Grid@34e9fd99]" started-at="2026-05-23T23:11:01 IST" name="launchBrowser" finished-at="2026-05-23T23:11:16 IST" duration-ms="14694" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+      </class> <!-- Day_27.CrossBrowserTest_Grid -->
+    </test> <!-- ChromeTest -->
+    <test started-at="2026-05-23T23:11:16 IST" name="EdgeTest" finished-at="2026-05-23T23:11:29 IST" duration-ms="13302">
+      <class name="Day_27.CrossBrowserTest_Grid">
+        <test-method signature="launchBrowser(java.lang.String)[pri:0, instance:Day_27.CrossBrowserTest_Grid@247bddad]" started-at="2026-05-23T23:11:16 IST" name="launchBrowser" finished-at="2026-05-23T23:11:29 IST" duration-ms="13288" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+      </class> <!-- Day_27.CrossBrowserTest_Grid -->
+    </test> <!-- EdgeTest -->
+  </suite> <!-- GridSuite -->
+</testng-results>

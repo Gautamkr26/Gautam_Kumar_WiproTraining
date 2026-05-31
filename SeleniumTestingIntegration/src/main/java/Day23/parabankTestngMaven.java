@@ -1,0 +1,150 @@
+package Day23;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class parabankTestngMaven {
+
+    WebDriver driver;
+
+    String username =
+            "Gautam" + System.currentTimeMillis();
+
+    String password = "Gautam@123";
+
+    @BeforeMethod
+    public void setup() {
+
+        driver = new ChromeDriver();
+
+        driver.get("https://parabank.parasoft.com/parabank/index.htm");
+
+        driver.manage().window().maximize();
+    }
+
+    @Test(priority = 1)
+    public void signupTest() throws InterruptedException {
+
+        driver.findElement(By.linkText("Register"))
+              .click();
+
+        Thread.sleep(2000);
+
+        driver.findElement(By.id("customer.firstName"))
+              .sendKeys("Gautam");
+
+        driver.findElement(By.id("customer.lastName"))
+              .sendKeys("Kumar");
+
+        driver.findElement(By.id("customer.address.street"))
+              .sendKeys("Darbhanga");
+
+        driver.findElement(By.id("customer.address.city"))
+              .sendKeys("Darbhanga");
+
+        driver.findElement(By.id("customer.address.state"))
+              .sendKeys("Bihar");
+
+        driver.findElement(By.id("customer.address.zipCode"))
+              .sendKeys("846004");
+
+        driver.findElement(By.id("customer.phoneNumber"))
+              .sendKeys("9100003100");
+
+        driver.findElement(By.id("customer.ssn"))
+              .sendKeys("123456");
+
+        driver.findElement(By.id("customer.username"))
+              .sendKeys(username);
+
+        driver.findElement(By.id("customer.password"))
+              .sendKeys(password);
+
+        driver.findElement(By.id("repeatedPassword"))
+              .sendKeys(password);
+
+        driver.findElement(By.xpath("//input[@value='Register']"))
+              .click();
+
+        Thread.sleep(5000);
+    }
+
+    @Test(priority = 2)
+    public void transferFundsTest()
+            throws InterruptedException {
+
+        // Login
+        driver.findElement(By.name("username"))
+              .sendKeys(username);
+
+        driver.findElement(By.name("password"))
+              .sendKeys(password);
+
+        driver.findElement(By.xpath("//input[@value='Log In']"))
+              .click();
+
+        Thread.sleep(3000);
+
+        // Open New Account
+        driver.findElement(By.linkText("Open New Account"))
+              .click();
+
+        Thread.sleep(3000);
+
+        // Create Second Account
+        driver.findElement(
+                By.xpath("//input[@value='Open New Account']"))
+              .click();
+
+        Thread.sleep(5000);
+
+        // Open Transfer Funds
+        driver.findElement(By.linkText("Transfer Funds"))
+              .click();
+
+        Thread.sleep(3000);
+
+        // Enter Amount
+        driver.findElement(By.id("amount"))
+              .sendKeys("500");
+
+        // Select From Account
+        Select fromAccount =
+        new Select(driver.findElement(By.id("fromAccountId")));
+
+        fromAccount.selectByIndex(0);
+
+        Thread.sleep(2000);
+
+        // Select To Account
+        Select toAccount =
+        new Select(driver.findElement(By.id("toAccountId")));
+
+        toAccount.selectByIndex(1);
+
+        Thread.sleep(2000);
+
+        // Click Transfer
+        driver.findElement(By.xpath("//input[@value='Transfer']"))
+              .click();
+
+        Thread.sleep(5000);
+
+        // Print Confirmation
+        System.out.println(
+                driver.findElement(By.className("title"))
+                      .getText());
+    }
+
+    @AfterMethod
+    public void tearDown() {
+
+        driver.quit();
+    }
+}

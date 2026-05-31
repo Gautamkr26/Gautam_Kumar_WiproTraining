@@ -1,0 +1,82 @@
+package Rest;
+
+import static io.restassured.RestAssured.*;
+
+import org.testng.annotations.Test;
+
+public class APITest {
+
+    @Test
+    public void executeAPI() throws Exception {
+
+        int rows = ExcelUtility.getRowCount();
+
+        for (int i = 1; i <= rows; i++) {
+
+            String method = ExcelUtility.getCellData(i, 2);
+            String url = ExcelUtility.getCellData(i, 3);
+
+            System.out.println("=================================");
+            System.out.println("Method : " + method);
+            System.out.println("URL : " + url);
+            System.out.println("=================================");
+
+            if (method.equalsIgnoreCase("GET")) {
+
+                given()
+
+                .when()
+                .get(url)
+
+                .then()
+                .statusCode(200)
+                .log().all();
+            }
+
+            else if (method.equalsIgnoreCase("POST")) {
+
+                given()
+                .header("Content-Type", "application/json")
+                .body("{\"firstName\":\"Gautam\"}")
+
+                .when()
+                .post(url)
+
+                .then()
+                .statusCode(201)
+                .log().all();
+            }
+
+            else if (method.equalsIgnoreCase("PUT")) {
+
+                given()
+                .header("Content-Type", "application/json")
+                .body("{\"firstName\":\"UpdatedUser\"}")
+
+                .when()
+                .put(url)
+
+                .then()
+                .statusCode(200)
+                .log().all();
+            }
+
+            else if (method.equalsIgnoreCase("DELETE")) {
+
+                given()
+
+                .when()
+                .delete(url)
+
+                .then()
+                .statusCode(200)
+                .log().all();
+            }
+
+            else {
+
+                System.out.println("Unsupported Method : " + method);
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-05-25T17:59:27 IST" name="DummyJSON API Suite" finished-at="2026-05-25T17:59:38 IST" duration-ms="11250">
+    <groups>
+    </groups>
+    <test started-at="2026-05-25T17:59:27 IST" name="DummyJSON API Test" finished-at="2026-05-25T17:59:38 IST" duration-ms="11250">
+      <class name="Rest.APITest">
+        <test-method signature="executeAPI()[pri:0, instance:Rest.APITest@31304f14]" started-at="2026-05-25T17:59:27 IST" name="executeAPI" finished-at="2026-05-25T17:59:38 IST" duration-ms="11179" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeAPI -->
+      </class> <!-- Rest.APITest -->
+    </test> <!-- DummyJSON API Test -->
+  </suite> <!-- DummyJSON API Suite -->
+</testng-results>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;AssignmentD26/src/test/resources/TestData(1).xlsx&apos; to &apos;TestData.xlsx&apos;" description="Rename resource &apos;TestData(1).xlsx&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/test/resources/TestData(1).xlsx" name="TestData.xlsx" stamp="1780209539344" updateReferences="true"/>
+</session>
