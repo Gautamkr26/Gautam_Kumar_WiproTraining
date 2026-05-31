@@ -1,0 +1,30 @@
+package Day3;
+
+class Employee {
+    private double salary;   // private variable
+
+    // Setter method
+    public void setSalary(double salary) {
+        if (salary > 0) {
+            this.salary = salary;
+        } else {
+            System.out.println("Invalid salary!");
+        }
+    }
+
+    // Getter method
+    public double getSalary() {
+        return salary;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Employee emp = new Employee();
+
+        emp.setSalary(50000);   // setting salary
+        System.out.println("Salary: " + emp.getSalary());
+
+        emp.setSalary(-1000);   // invalid case
+    }
+}

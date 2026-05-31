@@ -1,0 +1,47 @@
+package Day3;
+
+class BankAccount {
+    private double balance;
+
+    // Constructor
+    BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+    // Deposit method
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: " + amount);
+        } else {
+            System.out.println("Invalid deposit amount");
+        }
+    }
+
+    // Withdraw method
+    void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Insufficient balance or invalid amount");
+        }
+    }
+
+    // Getter method
+    double getBalance() {
+        return balance;
+    }
+}
+
+public class Employee {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount(1000);
+
+        acc.deposit(500);
+        acc.withdraw(300);
+        acc.withdraw(2000);
+
+        System.out.println("Final Balance: " + acc.getBalance());
+    }
+}

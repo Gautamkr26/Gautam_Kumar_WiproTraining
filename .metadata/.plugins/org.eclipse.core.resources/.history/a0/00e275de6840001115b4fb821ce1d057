@@ -1,0 +1,153 @@
+package healthcare;
+import java.util.*;
+
+class Patient {
+    private int id;
+    private String name;
+    private int age;
+    private String illness;
+
+    Patient(int id, String name, int age, String illness) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.illness = illness;
+    }
+
+    int getId() { return id; }
+    String getName() { return name; }
+    int getAge() { return age; }
+    String getIllness() { return illness; }
+}
+
+interface PatientService {
+    void addPatient(Patient p);
+    void viewPatient(int id);
+}
+
+class PatientServiceImpl implements PatientService {
+    Map<Integer, Patient> map = new HashMap<>();
+
+    public void addPatient(Patient p) {
+        map.put(p.getId(), p);
+        System.out.println("added");
+    }
+
+    public void viewPatient(int id) {
+        if(map.containsKey(id)) {
+            Patient p = map.get(id);
+            System.out.println(p.getId()+" "+p.getName()+" "+p.getAge()+" "+p.getIllness());
+        } else {
+            System.out.println("not found");
+        }
+    }
+
+    Patient get(int id) {
+        return map.get(id);
+    }
+}
+
+abstract class Doctor {
+    String name;
+
+    Doctor(String name) {
+        this.name = name;
+    }
+
+    abstract void diagnose(Patient p);
+}
+
+class GeneralDoctor extends Doctor {
+    GeneralDoctor(String name) {
+        super(name);
+    }
+
+    void diagnose(Patient p) {
+        System.out.println(name+" checked "+p.getName());
+    }
+}
+
+class HeartDoctor extends Doctor {
+    HeartDoctor(String name) {
+        super(name);
+    }
+
+    void diagnose(Patient p) {
+        if(p.getIllness().toLowerCase().contains("heart")) {
+            System.out.println(name+" treating heart issue of "+p.getName());
+        } else {
+            System.out.println(name+" not sure, refer to general");
+        }
+    }
+}
+
+public class HealthcareSystem {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        PatientServiceImpl service = new PatientServiceImpl();
+
+        while(true) {
+            System.out.println("\n1 add\n2 view\n3 diagnose\n4 exit");
+            int ch = sc.nextInt();
+
+            if(ch==1) {
+                System.out.print("id: ");
+                int id = sc.nextInt();
+                sc.nextLine();
+
+                System.out.print("name: ");
+                String name = sc.nextLine();
+
+                System.out.print("age: ");
+                int age = sc.nextInt();
+                sc.nextLine();
+
+                System.out.print("illness: ");
+                String ill = sc.nextLine();
+
+                service.addPatient(new Patient(id,name,age,ill));
+            }
+
+            else if(ch==2) {
+                System.out.print("id: ");
+                int id = sc.nextInt();
+                service.viewPatient(id);
+            }
+
+            else if(ch==3) {
+                System.out.print("id: ");
+                int id = sc.nextInt();
+                sc.nextLine();
+
+                Patient p = service.get(id);
+                if(p==null) {
+                    System.out.println("no patient");
+                    continue;
+                }
+
+                System.out.println("1 general 2 heart");
+                int d = sc.nextInt();
+
+                Doctor doc;
+                if(d==1) {
+                    doc = new GeneralDoctor("dr a");
+                } else {
+                    doc = new HeartDoctor("dr b");
+                }
+
+                doc.diagnose(p);
+            }
+
+            else if(ch==4) {
+                break;
+            }
+
+            else {
+                System.out.println("wrong input");
+            }
+        }
+
+        sc.close();
+    }
+}

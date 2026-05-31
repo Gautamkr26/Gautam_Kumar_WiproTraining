@@ -1,0 +1,106 @@
+package stepdefinitions;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import base.BaseClass;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class LoginSteps extends BaseClass
+{
+
+    @Given("User launches browser")
+    public void launch_browser()
+    {
+        System.out.println("Browser launched successfully");
+    }
+
+    @Given("User opens login page")
+    public void open_login_page()
+    {
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
+        System.out.println("Application opened");
+    }
+
+    @When("user enters username {string}")
+    public void enter_username(String username)
+    {
+        WebDriverWait wait =
+        new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement user =
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+        By.name("username")));
+
+        user.sendKeys(username);
+
+        System.out.println("Username Entered");
+    }
+
+    @When("user enters password {string}")
+    public void enter_password(String password)
+    {
+        WebDriverWait wait =
+        new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement pass =
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+        By.name("password")));
+
+        pass.sendKeys(password);
+
+        System.out.println("Password Entered");
+    }
+
+    @When("clicks on login button")
+    public void click_login() throws InterruptedException
+    {
+        driver.findElement(
+        By.xpath("//button[@type='submit']")).click();
+
+        System.out.println("Clicked Login Button");
+
+        Thread.sleep(3000);
+    }
+
+    @Then("user should navigate to dashboard")
+    public void dashboard()
+    {
+        String url = driver.getCurrentUrl();
+
+        if(url.contains("dashboard"))
+        {
+            System.out.println("Dashboard Displayed");
+        }
+        else
+        {
+            System.out.println("Login Failed");
+        }
+    }
+
+    @Then("error message should display")
+    public void error_message() throws InterruptedException
+    {
+        Thread.sleep(3000);
+
+        String currentUrl = driver.getCurrentUrl();
+
+        if(currentUrl.contains("auth/login"))
+        {
+            System.out.println("Invalid Login Passed");
+        }
+        else
+        {
+            System.out.println("Invalid Login Failed");
+        }
+    }
+}

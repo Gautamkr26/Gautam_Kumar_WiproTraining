@@ -1,0 +1,10 @@
+package healthcare;
+
+public class HealthcareSystem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
