@@ -45,10 +45,17 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.gautam"/>
+			<item value="com.orangehrm"/>
 		</list>
 		<list key="name">
+			<item value="DockerSeleniumFramework"/>
+			<item value="OrangeHRM_Docker"/>
 		</list>
 		<list key="artifactId">
+			<item value="DataDrivenFramework"/>
+			<item value="DockerSeleniumFramework"/>
+			<item value="OrangeHRM_Docker"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
